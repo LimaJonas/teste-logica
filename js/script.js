@@ -13,7 +13,7 @@ function preencherPlanilha(){
     for(var i = 1; i <= 30; i++){
         var peraDia = numeroAleatorio(0,5); //Número aleatório de Maçãs levadas no dia
         var macaDia = numeroAleatorio(0,5); //Número aleatório de Peras levadas no dia
-        var alunoMelhor = numeroAleatorio(1,2); //Número aleatório para ver quem foi o melhor aluno no dia(1 - João; 2 - Maria)
+        var alunoMelhor = numeroAleatorio(1,2); //Número aleatório para ver quem foi o melhor aluno no dia (1 - João; 2 - Maria)
 
         // Cria uma nova linha na tabela
         var row = table.insertRow(i);
@@ -30,17 +30,17 @@ function preencherPlanilha(){
         cell1.innerHTML = "<b>"+ i +"</b>"; //Insere na celula o dia
         cell2.innerHTML = peraDia; //Insere na celula o número de maçãs levadas no dia
         cell3.innerHTML = macaDia; //Insere na celula o número de peras levada no dia
-
-        // Insere na celula o melhor aluno do dia
-        cell4.innerHTML = alunoMelhor == 1 ? "João":"Maria";
+        cell4.innerHTML = alunoMelhor == 1 ? "João":"Maria"; // Insere na celula o melhor aluno do dia
 
         // Vetor com as 3 frutas que serão levadas pela professora
         var frutaLevada = [];
-        
-        // Switch para decidir qual fruta priorizar, de acordo com o melhor aluno [João(1) - Maçã; Maria(2) - Pera]
-        switch(alunoMelhor){
-            case 1:
-                while(frutaLevada.length <= 2){
+
+        // Laço para repetir 3 vezes o processo de inserir valores no vetor
+        while(frutaLevada.length < 3){
+            
+            // Switch para decidir qual fruta priorizar, de acordo com o melhor aluno 
+            switch(alunoMelhor){
+                case 1: //João
                     if(macaDia > 0){
                         frutaLevada.push("Maçã");
                         macaDia--;
@@ -52,10 +52,8 @@ function preencherPlanilha(){
                     } else{
                         frutaLevada.push("Nenhuma");
                     }
-                }
-                break;
-            case 2:
-                while(frutaLevada.length <= 2){
+                    break;
+                case 2: //Maria
                     if(peraDia > 0){
                         frutaLevada.push("Pera");
                         peraDia--;
@@ -67,11 +65,12 @@ function preencherPlanilha(){
                     } else {
                         frutaLevada.push("Nenhuma");
                     }
-                }
-                break;
+                    break;
+            }
+            
         }
-
-        // Inserindo nas celulas as Frutas 1, 2 e 3 levadas
+        
+        // Inserindo nas celulas as 3 Frutas levadas
         cell5.innerHTML = frutaLevada[0];
         cell6.innerHTML = frutaLevada[1];
         cell7.innerHTML = frutaLevada[2];
